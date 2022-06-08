@@ -38,7 +38,7 @@ export const AppProvider = ({ children }) => {
     })();
   }, []);
 
-  console.log(data);
+  console.log(data.werbung);
 
   return (
     <AppContext.Provider
