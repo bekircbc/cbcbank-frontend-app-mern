@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { AppContext } from "../AppContext";
 
 export const Home = () => {
-  const { werbung, isLoggedIn, currentAccount } = useContext(AppContext);
+  const { data, isLoggedIn, currentAccount } = useContext(AppContext);
   return (
     <>
       <h1>Home</h1>
@@ -15,7 +15,7 @@ export const Home = () => {
         </>
       ) : (
         <>
-          {werbung.map((m) => {
+          {data.werbung.map((m) => {
             return (
               <div key={m.id}>
                 <img src={m.url} alt={m.name} />
