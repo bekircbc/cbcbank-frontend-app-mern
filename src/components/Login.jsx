@@ -11,7 +11,7 @@ export const Login = () => {
   //   const enteredPin = pinInputRef.current.value;
   // }
   const {
-    accounts,
+    data,
     currentAccount,
     setCurrentAccount,
     setIsLoggedIn,
@@ -24,9 +24,8 @@ export const Login = () => {
     const enteredId = idInputRef.current.value;
     const enteredPin = pinInputRef.current.value;
     setCurrentAccount(
-      accounts.filter((m) => m.id === enteredId && m.pin === enteredPin)
+      data.accounts.filter((m) => m.id === enteredId && m.pin === enteredPin)
     );
-    console.log(currentAccount);
 
     currentAccount ? setIsLoggedIn(true) : setIsLoggedIn(false);
   }
