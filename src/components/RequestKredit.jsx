@@ -1,20 +1,48 @@
-import { useContext } from "react";
+import { useContext, useRef } from "react";
 import { AppContext } from "../AppContext";
 export const RequestKredit = () => {
+  const idInputRef = useRef();
+  const pinInputRef = useRef();
   const {
     isLoggedIn,
     // isLoggedIn,
     //   isLoggedInHandler,
   } = useContext(AppContext);
+
+  function isLoggedInHandler(event) {
+    event.preventDefault();
+    const enteredId = idInputRef.current.value;
+    const enteredPin = pinInputRef.current.value;
+    setCurrentAccount(
+      data.accounts.filter((m) => m.id === enteredId && m.pin === enteredPin)
+    );
+
+    currentAccount ? setIsLoggedIn(true) : setIsLoggedIn(false);
+  }
+
   return (
     <>
       {isLoggedIn ? (
         <>
-          <h1>Request Kredit</h1>
+          <div className="requestKredit">
+            <h1>Request Kredit</h1>
+
+            <form className="formCard">
+              <label htmlFor="id">User Id</label>
+              <input type="text" required id="id" ref={idInputRef} />
+
+              <label htmlFor="pin">Pin</label>
+              <input type="number" required id="pin" ref={pinInputRef} />
+
+              <button className="btnLogin" onClick={isLoggedInHandler}>
+                Login
+              </button>
+            </form>
+          </div>
         </>
       ) : (
         <>
-          <h1>Request Kredity</h1>
+          <h1>Login to request kredit..</h1>
         </>
       )}
     </>

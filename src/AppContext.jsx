@@ -1,5 +1,6 @@
 import { createContext, useState, useEffect } from "react";
 import axios from "axios";
+export { accData } from "./data/data";
 
 export const AppContext = createContext();
 
@@ -38,7 +39,9 @@ export const AppProvider = ({ children }) => {
     })();
   }, []);
 
-  console.log(data.werbung);
+  data ? data : setData(accData);
+
+  console.log(data);
 
   return (
     <AppContext.Provider
