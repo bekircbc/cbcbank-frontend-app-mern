@@ -9,9 +9,29 @@ export const Home = () => {
       {isLoggedIn ? (
         <>
           <div>Welcome, {currentAccount.owner}</div>
-          {currentAccount.movements.map((m) => {
-            return <div>{m}</div>;
-          })}
+          <div>Interest Rate : {currentAccount.interestRate}</div>
+          <div>
+            {currentAccount.map((m, i) => {
+              return (
+                <>
+                  <div>
+                    {m.movements[i]} {m.movementsDates[i]}
+                  </div>
+                </>
+              );
+            })}
+            <div>{Math.sum(currentAccount.movements)}</div>
+          </div>
+          <div>
+            {data.werbung.map((m) => {
+              return (
+                <div key={m.id}>
+                  <img src={m.url} alt={m.name} />
+                  <h2>{m.name}</h2>
+                </div>
+              );
+            })}
+          </div>
         </>
       ) : (
         <>
