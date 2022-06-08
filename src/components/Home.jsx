@@ -15,13 +15,15 @@ export const Home = () => {
         </>
       ) : (
         <>
-          {data.werbung.map((m) => {
-            return (
-              <div key={m.id}>
-                <img src={m.url} alt={m.name} />
-                <h2>{m.name}</h2>
-              </div>
-            );
+          {data.map((m) => {
+            m.werbung.map((m) => {
+              return (
+                <div key={m.id}>
+                  <img src={m.url} alt={m.name} />
+                  <h2>{m.name}</h2>
+                </div>
+              );
+            });
           })}
         </>
       )}

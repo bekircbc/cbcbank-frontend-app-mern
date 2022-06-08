@@ -34,7 +34,7 @@ export const AppProvider = ({ children }) => {
 
   useEffect(() => {
     (async () => {
-      setData((await axios.get(ur)).data);
+      setData((await axios.get(url)).data);
     })();
   }, []);
 
