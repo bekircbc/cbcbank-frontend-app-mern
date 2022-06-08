@@ -3,12 +3,11 @@ import axios from "axios";
 
 export const AppContext = createContext();
 
-const accUrlAccounts = "http://localhost:4556/accounts";
-const accUrlWerbung = "http://localhost:4556/werbung";
+const url = "https://cbcbank-backend-app-mern.herokuapp.com/";
+
 export const AppProvider = ({ children }) => {
   const siteTitle = "CBC Bank";
-  const [accounts, setAccounts] = useState([]);
-  const [werbung, setWerbung] = useState([]);
+  const [data, setData] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentAccount, setCurrentAccount] = useState({});
   // const [currentLogindata, setCurrentLogindata] = useState();
@@ -35,19 +34,17 @@ export const AppProvider = ({ children }) => {
 
   useEffect(() => {
     (async () => {
-      setAccounts((await axios.get(accUrlAccounts)).data);
-      setWerbung((await axios.get(accUrlWerbung)).data);
+      setData((await axios.get(ur)).data);
     })();
   }, []);
 
-  console.log(accounts, werbung);
+  console.log(data);
 
   return (
     <AppContext.Provider
       value={{
         siteTitle,
-        accounts,
-        werbung,
+        data,
         currentAccount,
         setCurrentAccount,
         // currentLogindata,
