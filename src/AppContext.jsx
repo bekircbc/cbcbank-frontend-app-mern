@@ -14,9 +14,11 @@ export const AppProvider = ({ children }) => {
   // const [currentLogindata, setCurrentLogindata] = useState();
 
   useEffect(() => {
-    (async () => {
-      setData((await axios.get(url)).data);
-    })();
+    setTimeout(() => {
+      (async () => {
+        setData((await axios.get(url)).data);
+      })();
+    }, 0);
   }, []);
 
   return (
