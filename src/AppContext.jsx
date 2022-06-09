@@ -10,15 +10,13 @@ export const AppProvider = ({ children }) => {
   const siteTitle = "CBC Bank";
   const [data, setData] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [currentAccount, setCurrentAccount] = useState({});
-  // const [currentLogindata, setCurrentLogindata] = useState();
+  const [currentAccount, setCurrentAccount] = useState([]);
+  // const [currentLogindata, setCurrentLogindata                                                                                                   ] = useState();
 
   useEffect(() => {
-    setTimeout(() => {
-      (async () => {
-        setData((await axios.get(url)).data);
-      })();
-    }, 0);
+    (async () => {
+      setData((await axios.get(url)).data);
+    })();
   }, []);
 
   return (
@@ -26,6 +24,7 @@ export const AppProvider = ({ children }) => {
       value={{
         siteTitle,
         data,
+        setData,
         currentAccount,
         setCurrentAccount,
         // currentLogindata,
