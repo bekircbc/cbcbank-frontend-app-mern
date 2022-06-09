@@ -1,4 +1,4 @@
-export const accData = {
+export const data = {
   werbung: [
     {
       id: 1,
