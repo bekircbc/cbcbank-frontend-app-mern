@@ -5,13 +5,9 @@ import { AppContext } from "../AppContext";
 export const Login = () => {
   const idInputRef = useRef();
   const pinInputRef = useRef();
-  // function submitHandler(e) {
-  //   e.preventDefault();
-  //   const enteredId = idInputRef.current.value;
-  //   const enteredPin = pinInputRef.current.value;
-  // }
+
   const {
-    data,
+    bankData,
     currentAccount,
     setCurrentAccount,
     setIsLoggedIn,
