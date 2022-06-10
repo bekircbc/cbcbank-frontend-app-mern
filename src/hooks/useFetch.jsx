@@ -23,3 +23,12 @@ export const useFetch = (url, useMockWait) => {
     isLoading: items.length === 0,
   };
 };
+
+// const patchData = async (url = ``, data = {}) => {
+//   const response = await fetch(url, {
+//     method: "PATCH",
+//     headers: { "Content-Type": "application/json" },
+//     body: JSON.stringify(data),
+//   });
+//   return response.json();
+// };
