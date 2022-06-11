@@ -12,6 +12,18 @@ export const TransferMoney = () => {
     // isLoggedIn,
     //   isLoggedInHandler,
   } = useContext(AppContext);
+
+  // function isLoggedInHandler(event) {
+  //   event.preventDefault();
+  //   const enteredId = idInputRef.current.value;
+  //   const enteredPin = pinInputRef.current.value;
+  //   setCurrentAccount(
+  //     data.accounts.filter((m) => m.id === enteredId && m.pin === enteredPin)
+  //   );
+
+  //   currentAccount ? setIsLoggedIn(true) : setIsLoggedIn(false);
+  // }
+
   return (
     <div className="login">
       {isLoggedIn ? (

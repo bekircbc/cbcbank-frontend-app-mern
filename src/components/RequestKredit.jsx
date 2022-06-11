@@ -1,24 +1,26 @@
 import { useContext, useRef } from "react";
 import { AppContext } from "../AppContext";
 export const RequestKredit = () => {
-  const idInputRef = useRef();
-  const pinInputRef = useRef();
+  const currentIbanRef = useRef();
+  const currentOwnerRef = useRef();
+  const kreditAmountRef = useRef();
+  const kreditTermRef = useRef();
   const {
     isLoggedIn,
     // isLoggedIn,
     //   isLoggedInHandler,
   } = useContext(AppContext);
 
-  function isLoggedInHandler(event) {
-    event.preventDefault();
-    const enteredId = idInputRef.current.value;
-    const enteredPin = pinInputRef.current.value;
-    setCurrentAccount(
-      data.accounts.filter((m) => m.id === enteredId && m.pin === enteredPin)
-    );
+  // function isLoggedInHandler(event) {
+  //   event.preventDefault();
+  //   const enteredId = idInputRef.current.value;
+  //   const enteredPin = pinInputRef.current.value;
+  //   setCurrentAccount(
+  //     data.accounts.filter((m) => m.id === enteredId && m.pin === enteredPin)
+  //   );
 
-    currentAccount ? setIsLoggedIn(true) : setIsLoggedIn(false);
-  }
+  //   currentAccount ? setIsLoggedIn(true) : setIsLoggedIn(false);
+  // }
 
   return (
     <>
@@ -28,12 +30,37 @@ export const RequestKredit = () => {
             <h1>Request Kredit</h1>
 
             <form className="formCard">
-              <label htmlFor="id">User Id</label>
-              <input type="text" required id="id" ref={idInputRef} />
+              <label htmlFor="currentIban">IBAN</label>
+              <input
+                type="text"
+                required
+                id="currentIban"
+                ref={currentIbanRef}
+              />
 
-              <label htmlFor="pin">Pin</label>
-              <input type="number" required id="pin" ref={pinInputRef} />
+              <label htmlFor="currentOwner">Owner of Account</label>
+              <input
+                type="text"
+                required
+                id="currentOwner"
+                ref={currentOwnerRef}
+              />
 
+              <label htmlFor="kreditAmount">Kredit Amount</label>
+              <input
+                type="number"
+                required
+                id="kreditAmount"
+                ref={kreditAmountRef}
+              />
+
+              <label htmlFor="kreditTerm">Kredit Term</label>
+              <input
+                type="number"
+                required
+                id="kreditTerm"
+                ref={kreditTermRef}
+              />
               <button className="btnLogin" onClick={isLoggedInHandler}>
                 Login
               </button>
