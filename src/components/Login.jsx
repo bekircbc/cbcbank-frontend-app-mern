@@ -1,5 +1,6 @@
 import { useContext, useRef } from "react";
 import { AppContext } from "../AppContext";
+import { useLogin } from "../hooks/useLogin";
 // import { Home } from "./Home";
 
 export const Login = () => {
@@ -7,7 +8,7 @@ export const Login = () => {
   const pinInputRef = useRef();
 
   const {
-    bankData,
+    accountsData,
     currentAccount,
     setCurrentAccount,
     setIsLoggedIn,
@@ -19,13 +20,12 @@ export const Login = () => {
     event.preventDefault();
     const enteredId = idInputRef.current.value;
     const enteredPin = pinInputRef.current.value;
-    setCurrentAccount(
-      bankData.accounts.filter(
-        (m) => m.id === enteredId && m.pin === enteredPin
-      )
-    );
+    // setCurrentAccount(
+    //   accountsData.filter((m) => m.id === enteredId && m.pin === enteredPin)
+    // );
 
-    currentAccount ? setIsLoggedIn(true) : setIsLoggedIn(false);
+    // currentAccount.isLoggedIn ? "" : (currentAccount.isLoggedIn = true);
+    useLogin(enteredId, enteredPin);
   }
 
   return (
