@@ -1,73 +1,100 @@
-btnTransfer.addEventListener("click", async (e) => {
-  e.preventDefault();
-  // Verifiy den Nutzer zuerst bevor wir etwas anders machen
-  let userInfo = JSON.parse(localStorage.getItem("currentUser"));
-  let isVerified = verifyUser(userInfo);
-  if (isVerified === false) return; // wennn er nicht existiert dann darf er nicht weiter
+import { useContext } from "react";
+import { AppContext } from "../AppContext";
+// import axios from "axios";
 
-  const amount = +inputTransferAmount.value;
-  const receiverAcc = accounts.find((acc) => {
-    if (
-      acc.owner === inputTransferTo.value &&
-      acc.iban === inputTransferiban.value
+export const useTransferMoney = (id, Iban, owner, amount) => {
+  const {
+    accountsData,
+    currentAccount,
+    setCurrentAccount,
+    receiverAccount,
+    setReceiverAccount,
+    // setIsLoggedIn,
+    // isLoggedIn,
+    //   isLoggedInHandler,
+  } = useContext(AppContext);
+
+  setReceiverAccount(
+    accountsData.filter(
+      (m) => m.id === id && m.Iban === Iban && m.owner === owner
     )
-      return acc;
-  });
-  inputTransferAmount.value =
-    inputTransferTo.value =
-    inputTransferiban.value =
-      "";
+  );
 
-  if (
-    amount > 0 &&
-    receiverAcc &&
-    currentAccount.balance >= amount &&
-    receiverAcc?.owner !== currentAccount.owner
-  ) {
-    // Doing the transfer
-    ////////////////////////////////////////
+  return {
+    receiverAccount,
+  };
+};
 
-    currentAccount.movements.push(-amount);
-    currentAccount.movementsDates.push(new Date().toISOString());
-    receiverAcc.movements.push(amount);
-    receiverAcc.movementsDates.push(new Date().toISOString());
+// btnTransfer.addEventListener("click", async (e) => {
+//   e.preventDefault();
+//   // Verifiy den Nutzer zuerst bevor wir etwas anders machen
+//   let userInfo = JSON.parse(localStorage.getItem("currentUser"));
+//   let isVerified = verifyUser(userInfo);
+//   if (isVerified === false) return; // wennn er nicht existiert dann darf er nicht weiter
 
-    const dataCurrent = {
-      movements: currentAccount.movements,
-      movementsDates: currentAccount.movementsDates,
-    };
+//   const amount = +inputTransferAmount.value;
+//   const receiverAcc = accounts.find((acc) => {
+//     if (
+//       acc.owner === inputTransferTo.value &&
+//       acc.iban === inputTransferiban.value
+//     )
+//       return acc;
+//   });
+//   inputTransferAmount.value =
+//     inputTransferTo.value =
+//     inputTransferiban.value =
+//       "";
 
-    console.log(dataCurrent);
+//   if (
+//     amount > 0 &&
+//     receiverAcc &&
+//     currentAccount.balance >= amount &&
+//     receiverAcc?.owner !== currentAccount.owner
+//   ) {
+//     // Doing the transfer
+//     ////////////////////////////////////////
 
-    const dataReceiver = {
-      movements: receiverAcc.movements,
-      movementsDates: receiverAcc.movementsDates,
-    };
-    console.log(dataCurrent);
+//     currentAccount.movements.push(-amount);
+//     currentAccount.movementsDates.push(new Date().toISOString());
+//     receiverAcc.movements.push(amount);
+//     receiverAcc.movementsDates.push(new Date().toISOString());
 
-    patchData(
-      `http://localhost:3000/accounts/${currentAccount.id}`,
-      dataCurrent
-    );
-    patchData(`http://localhost:3000/accounts/${receiverAcc.id}`, dataReceiver);
+//     const dataCurrent = {
+//       movements: currentAccount.movements,
+//       movementsDates: currentAccount.movementsDates,
+//     };
 
-    // currentAccount.movements.push(-amount);
-    // receiverAcc.movements.push(amount);
-    moneyTransfer.innerHTML = `${amount} ${
-      currentAccount.currency === "EUR" ? "€" : "$"
-    } has tranferred to ${receiverAcc.owner}`;
+//     console.log(dataCurrent);
 
-    // Add transfer date
-    // currentAccount.movementsDates.push(new Date().toISOString());
-    // receiverAcc.movementsDates.push(new Date().toISOString());
-    //////////////////////////////////////////////////////////////
-    // Update UI
-    updateUI(currentAccount);
+//     const dataReceiver = {
+//       movements: receiverAcc.movements,
+//       movementsDates: receiverAcc.movementsDates,
+//     };
+//     console.log(dataCurrent);
 
-    // Reset timer
-    clearInterval(timer);
-    timer = startLogOutTimer();
-  } else {
-    moneyTransfer.innerHTML = `${amount} can not transfer`;
-  }
-});
+//     patchData(
+//       `http://localhost:3000/accounts/${currentAccount.id}`,
+//       dataCurrent
+//     );
+//     patchData(`http://localhost:3000/accounts/${receiverAcc.id}`, dataReceiver);
+
+//     // currentAccount.movements.push(-amount);
+//     // receiverAcc.movements.push(amount);
+//     moneyTransfer.innerHTML = `${amount} ${
+//       currentAccount.currency === "EUR" ? "€" : "$"
+//     } has tranferred to ${receiverAcc.owner}`;
+
+//     // Add transfer date
+//     // currentAccount.movementsDates.push(new Date().toISOString());
+//     // receiverAcc.movementsDates.push(new Date().toISOString());
+//     //////////////////////////////////////////////////////////////
+//     // Update UI
+//     updateUI(currentAccount);
+
+//     // Reset timer
+//     clearInterval(timer);
+//     timer = startLogOutTimer();
+//   } else {
+//     moneyTransfer.innerHTML = `${amount} can not transfer`;
+//   }
+// });

@@ -1,5 +1,5 @@
 export const data = {
-  werbung: [
+  werbungs: [
     {
       id: 1,
       name: "A",

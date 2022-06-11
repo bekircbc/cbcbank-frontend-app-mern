@@ -8,21 +8,22 @@ export const TransferMoney = () => {
   const receiverOwnerRef = useRef();
   const amountRef = useRef();
   const {
+    currentAccount,
+    receiverAccount,
+    setReceiverAccount,
     isLoggedIn,
     // isLoggedIn,
     //   isLoggedInHandler,
   } = useContext(AppContext);
 
-  // function isLoggedInHandler(event) {
-  //   event.preventDefault();
-  //   const enteredId = idInputRef.current.value;
-  //   const enteredPin = pinInputRef.current.value;
-  //   setCurrentAccount(
-  //     data.accounts.filter((m) => m.id === enteredId && m.pin === enteredPin)
-  //   );
-
-  //   currentAccount ? setIsLoggedIn(true) : setIsLoggedIn(false);
-  // }
+  function transferMoneyHandler(event) {
+    event.preventDefault();
+    const receiverId = receiverIdRef.current.value;
+    const receiverIban = receiverIbanRef.current.value;
+    const receiverOwner = receiverOwnerRef.current.value;
+    const amount = amountRef.current.value;
+    useTransferMoney(receiverId, receiverIban, receiverOwner, amount);
+  }
 
   return (
     <div className="login">
@@ -41,10 +42,7 @@ export const TransferMoney = () => {
             <input type="text" required id="owner" ref={receiverOwnerRef} />
             <label htmlFor="amount">Amount</label>
             <input type="number" required id="amount" ref={amountRef} />
-            <button
-              className="btnTransferMoney"
-              onClick={() => useTransferMoney}
-            >
+            <button className="btnTransferMoney" onClick={transferMoneyHandler}>
               Transfer Money
             </button>
           </form>

@@ -7,8 +7,8 @@ export const useLogin = (id, pin) => {
     accountsData,
     currentAccount,
     setCurrentAccount,
-    // setIsLoggedIn,
-    // isLoggedIn,
+    setIsLoggedIn,
+    isLoggedIn,
     //   isLoggedInHandler,
   } = useContext(AppContext);
 
@@ -18,7 +18,10 @@ export const useLogin = (id, pin) => {
 
   currentAccount.isLoggedIn ? "" : (currentAccount.isLoggedIn = true);
 
+  currentAccount ? setIsLoggedIn(true) : setIsLoggedIn(false);
+
   return {
     currentAccount,
+    isLoggedIn,
   };
 };

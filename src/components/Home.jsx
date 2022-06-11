@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { AppContext } from "../AppContext";
 
 export const Home = () => {
-  const { bankData, isLoggedIn, currentAccount } = useContext(AppContext);
+  const { werbungsData, isLoggedIn, currentAccount } = useContext(AppContext);
   return (
     <>
       <h1>Home</h1>
@@ -23,7 +23,7 @@ export const Home = () => {
             <div>{Math.sum(currentAccount.movements)}</div>
           </div>
           <div>
-            {bankData.werbung.map((m) => {
+            {werbungsData.map((m) => {
               return (
                 <div key={m.id}>
                   <img src={m.url} alt={m.name} />
@@ -35,7 +35,7 @@ export const Home = () => {
         </>
       ) : (
         <>
-          {bankData.werbung.map((m) => {
+          {werbungsData.map((m) => {
             return (
               <div key={m.id}>
                 <img src={m.url} alt={m.name} />
