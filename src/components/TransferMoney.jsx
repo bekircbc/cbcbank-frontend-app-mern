@@ -1,6 +1,6 @@
 import { useContext, useRef } from "react";
 import { AppContext } from "../AppContext";
-import useTransferMoney from "../hooks/useTransferMoney";
+import { useTransferMoney } from "../hooks/useTransferMoney";
 
 export const TransferMoney = () => {
   const receiverIdRef = useRef();
